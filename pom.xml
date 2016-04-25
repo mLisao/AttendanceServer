@@ -12,6 +12,7 @@
         <spring.version>4.2.2.RELEASE</spring.version>
         <!-- mybatis版本号 -->
         <mybatis.version>3.2.6</mybatis.version>
+        <!-- 数据库驱动版本号-->
         <mysql_connection.version>5.1.38</mysql_connection.version>
     </properties>
 
@@ -68,12 +69,19 @@
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- fastJson 配置-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.6</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
         <!-- mybatis核心包 -->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -87,6 +95,7 @@
             <version>${mysql_connection.version}</version>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>AttendanceServer</finalName>
         <plugins>

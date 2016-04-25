@@ -7,9 +7,10 @@ import com.lisao.attendance.entity.base.BaseEntity;
  * Created by lisao on 2016/1/8.
  */
 public class Teacher extends BaseEntity {
-    private String name;
-    private long mobileNumber;
-    private String email;
+
+    private String name;//姓名
+    private long mobileNumber;//手机号码
+    private String email;//邮箱
 
     public String getName() {
         return name;

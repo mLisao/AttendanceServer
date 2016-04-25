@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -52,6 +56,14 @@ public class HelloController {
     public Student getStudent(HttpServletResponse response, @RequestParam(defaultValue = "111") String id) throws IOException {
         Student student = new Student();
         student.setId(Long.parseLong(id));
+        return student;
+    }
+
+    @RequestMapping(value = "/json")
+    @ResponseBody
+    public Student getJson() {
+        Student student = new Student();
+        student.setNumber(333);
         return student;
     }
 }

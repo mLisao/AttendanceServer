@@ -7,6 +7,7 @@ import com.lisao.attendance.entity.base.BaseEntity;
  * 课堂信息
  */
 public class Classe extends BaseEntity {
+
     private long startTime;//上课开始时间
     private long endTime;//上课结束时间
     private long endAttendTime;//结束签到时间

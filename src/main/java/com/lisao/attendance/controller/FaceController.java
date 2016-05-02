@@ -15,7 +15,7 @@ public class FaceController {
     public static final String FACE_HELLO = "/api/hello";//服务器测试接口，返回服务器当前时间。
     public static final String FACEPOINTSDETECT = "/api/facepointsdetect";//根据参数faceImage，获取图像中的人脸轮廓和特征点。
     public static final String FACEANGLESDETECT = "/api/faceanglesdetect";//根据参数faceImage，获取图像中的人脸角度。
-    public static final String FACEDATECT = "/api/facedatect";//根据参数faceImage，获取图像中的人脸位置和特征。
+    public static final String FACEDATECT = "/api/facedetect";//根据参数faceImage，获取图像中的人脸位置和特征。
     public static final String FACECOMPARE = "/api/facecompare";//根据参数facefeature1，facefeature2获取两个人脸的相似度。
     public static final String FACEDETECTANDCOMPARE = "/api/facedetectandcompare";//根据参数faceimage1,faceimage2获取两个人脸的相似度。
     public static final String FACEDETECTCOUNT = "/api/facedetectcount";//根据参数faceImage，获取图像中的人脸数量。

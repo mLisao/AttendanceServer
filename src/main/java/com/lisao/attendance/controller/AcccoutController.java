@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 用户管理类
  */
 @Controller
-@RequestMapping("/account")
+@RequestMapping("/api/account")
 public class AcccoutController {
     /**
      * 用户登录

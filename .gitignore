@@ -6,6 +6,7 @@
 *.ipr
 *.iws
 *.war
+/.idea
 /.idea/workspace.xml
 target
 out

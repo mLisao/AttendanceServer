@@ -1,23 +1,40 @@
 package com.lisao.attendance.controller;
 
 import com.lisao.attendance.entity.Student;
+import com.lisao.attendance.mapping.StudentManager;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")
 public class HelloController {
+
+    @Resource
+    private SqlSessionFactory sqlSessionFactory;
+
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            StudentManager mapper = session.getMapper(StudentManager.class);
+            Student student = new Student();
+            student.setName("张三");
+            student.setNumber(System.currentTimeMillis());
+            student.setPassword("12313");
+            mapper.addStudent(student);
+            session.commit();
+            // do work
+        } finally {
+            session.close();
+        }
         return "hello";
     }
 

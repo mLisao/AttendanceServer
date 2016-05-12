@@ -36,9 +36,13 @@
                         <value>application/json;charset=UTF-8</value>
                     </list>
                 </property>
-                <!--<property name="serializerFeature">-->
-                <!--这个地方加上这个功能吧，能自己配置一些东西，比如时间的格式化，null输出""等等-->
-                <!--</property>-->
+                <property name="features">
+                    <!--这个地方加上这个功能吧，能自己配置一些东西，比如时间的格式化，null输出""等等-->
+                    <list>
+                        <value>WriteNullStringAsEmpty</value>
+                        <value>WriteNullListAsEmpty</value>
+                    </list>
+                </property>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
@@ -85,9 +89,6 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--&lt;!&ndash; 自动扫描mapping.xml文件 &ndash;&gt;-->
-        <!--<property name="typeAliases" value="com.lisao.attendance.mapping.StudentManager.class"/>-->
     </bean>
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
@@ -100,6 +101,10 @@
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="studentDao" class="com.lisao.attendance.daoimpl.StudentDaoImpl">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
     <mvc:resources location="/WEB-INF/imgs/" mapping="/imgs/**"/>

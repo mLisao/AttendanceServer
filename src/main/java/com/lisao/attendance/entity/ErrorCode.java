@@ -6,6 +6,7 @@ package com.lisao.attendance.entity;
 public class ErrorCode {
 
     public static final int SUCCESS = 0;
+    public static final int FAILURE = -1;
 
     private int code;
     private String msg;

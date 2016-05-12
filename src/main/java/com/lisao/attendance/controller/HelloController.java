@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -27,7 +28,7 @@ public class HelloController {
             StudentManager mapper = session.getMapper(StudentManager.class);
             Student student = new Student();
             student.setName("张三");
-            student.setNumber(System.currentTimeMillis());
+            student.setNumber(System.currentTimeMillis()/10000);
             student.setPassword("12313");
             mapper.addStudent(student);
             session.commit();
@@ -78,9 +79,16 @@ public class HelloController {
 
     @RequestMapping(value = "/json")
     @ResponseBody
-    public Student getJson() {
-        Student student = new Student();
-        student.setNumber(333);
-        return student;
+    public List<Student> getJson() {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<Student> students = null;
+        try {
+            StudentManager mapper = session.getMapper(StudentManager.class);
+            students = mapper.getAllUser();
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return students;
     }
 }

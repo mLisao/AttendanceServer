@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,12 +29,29 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public boolean insert(Student student) {
-        return false;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            StudentManager mapper = session.getMapper(StudentManager.class);
+            mapper.addStudent(student);
+            session.commit();
+            return true;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public Student findById(int id) {
-        return null;
+        SqlSession session = sqlSessionFactory.openSession();
+        Student student = null;
+        try {
+            StudentManager mapper = session.getMapper(StudentManager.class);
+            student = mapper.selectStudentById(id);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return student;
     }
 
     @Override
@@ -67,16 +85,34 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public List<Student> getAllStudent(int page, int limit) {
-        return null;
+        SqlSession session = sqlSessionFactory.openSession();
+        List<Student> students = new ArrayList<Student>();
+        try {
+            StudentManager mapper = session.getMapper(StudentManager.class);
+            students = mapper.getAllUser(page, limit);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return students;
     }
 
     @Override
     public boolean updateStudentInfo(Student student) {
-        return false;
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            StudentManager mapper = session.getMapper(StudentManager.class);
+            mapper.updateStudentInfo(student);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return true;
     }
 
     @Override
     public boolean removeStudent(Student student) {
+
         return false;
     }
 }

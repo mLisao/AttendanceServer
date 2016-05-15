@@ -22,7 +22,7 @@ public interface TeacherMapper {
     List<Teacher> selectAll();
 
     @Insert("INSERT INTO teacher(name,number,password) values(#{name},#{number},#{password})")
-    void addStudent(Teacher teacher);
+    void addTeacher(Teacher teacher);
 
 
     @Update("UPDATE student SET " +

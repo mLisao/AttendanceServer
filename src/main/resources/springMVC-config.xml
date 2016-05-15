@@ -106,6 +106,8 @@
     <bean id="studentDao" class="com.lisao.attendance.daoimpl.StudentDaoImpl">
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+    <bean id="teacherDao" class="com.lisao.attendance.daoimpl.TeacherDaoImpl"/>
+    <bean id="classRoomDao" class="com.lisao.attendance.daoimpl.ClassRoomDaoImpl"/>
 
     <mvc:resources location="/WEB-INF/imgs/" mapping="/imgs/**"/>
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>

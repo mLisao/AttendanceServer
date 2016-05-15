@@ -8,16 +8,16 @@ import java.io.Serializable;
  * 基础的实体类
  */
 public class BaseEntity implements Serializable {
-    private long id;
+    protected int id;
 
     public BaseEntity() {
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

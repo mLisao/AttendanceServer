@@ -2,14 +2,13 @@ package com.lisao.attendance.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.lisao.attendance.dao.StudentDao;
+import com.lisao.attendance.dao.TeacherDao;
 import com.lisao.attendance.daoimpl.StudentDaoImpl;
 import com.lisao.attendance.entity.ErrorCode;
 import com.lisao.attendance.entity.Student;
+import com.lisao.attendance.entity.Teacher;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -24,14 +23,16 @@ public class AccountController {
     @Resource
     private StudentDao studentDao;
 
-    public StudentDao getStudentDao() {
-        return studentDao;
-    }
+    @Resource
+    private TeacherDao teacherDao;
 
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
     }
 
+    public void setTeacherDao(TeacherDao teacherDao) {
+        this.teacherDao = teacherDao;
+    }
 
     /**
      * 用户登录
@@ -50,9 +51,57 @@ public class AccountController {
     }
 
     /**
-     * 用户注册
+     * @param name
+     * @param password
+     * @param number
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void studentRegister() {
+    @ResponseBody
+    public Object studentRegister(@RequestParam("name") String name, @RequestParam("password") String password, @RequestParam("number") long number) {
+        Student student = studentDao.findByName(number);//通过学号查询
+        if (student != null) {
+            return new ErrorCode(ErrorCode.FAILURE, "账号已经被注册");
+        } else {
+            student = new Student();
+            student.setName(name);
+            student.setNumber(number);
+            student.setPassword(password);
+            studentDao.insert(student);
+        }
+        return student;
+    }
+
+    /**
+     * 教师的注册
+     *
+     * @param name
+     * @param password
+     * @param number
+     * @return
+     */
+    @RequestMapping(value = "/teacher/register", method = RequestMethod.POST)
+    @ResponseBody
+    public Object teacherRegister(@RequestParam("name") String name, @RequestParam("password") String password, @RequestParam("number") long number) {
+        Teacher teacher = teacherDao.findByNumber(number);
+        if (teacher != null) {
+            return new ErrorCode(ErrorCode.FAILURE, "账号已经被注册");
+        } else {
+            teacher = new Teacher();
+            teacher.setName(name);
+            teacher.setNumber(number);
+            teacher.setPassword(password);
+            teacherDao.addTeacher(teacher);
+        }
+        return teacher;
+    }
+
+    @RequestMapping(value = "/teacher/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Object teacherLogin(@RequestParam("password") String password, @RequestParam("number") long number) {
+        Teacher teacher = teacherDao.findByNumberAndPassword(number, password);
+        if (teacher == null) {
+            return new ErrorCode(ErrorCode.FAILURE, "工号或密码错误");
+        }
+        return teacher;
     }
 }

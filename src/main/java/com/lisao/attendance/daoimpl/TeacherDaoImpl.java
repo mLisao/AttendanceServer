@@ -45,6 +45,34 @@ public class TeacherDaoImpl implements TeacherDao {
     }
 
     @Override
+    public Teacher findByNumber(long number) {
+        SqlSession session = sqlSessionFactory.openSession();
+        Teacher teacher = null;
+        try {
+            TeacherMapper mapper = session.getMapper(TeacherMapper.class);
+            teacher = mapper.selectTeacherByNumber(number);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return teacher;
+    }
+
+    @Override
+    public Teacher findByNumberAndPassword(long number, String password) {
+        SqlSession session = sqlSessionFactory.openSession();
+        Teacher teacher = null;
+        try {
+            TeacherMapper mapper = session.getMapper(TeacherMapper.class);
+            teacher = mapper.selectTeacherByNumberAndPassword(number, password);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return teacher;
+    }
+
+    @Override
     public List<Teacher> getAllTeacher(int page, int limit) {
         SqlSession session = sqlSessionFactory.openSession();
         List<Teacher> teachers = null;

@@ -28,7 +28,7 @@ public class HelloController {
             StudentMapper mapper = session.getMapper(StudentMapper.class);
             Student student = new Student();
             student.setName("张三");
-            student.setNumber(System.currentTimeMillis()/10000);
+            student.setNumber(System.currentTimeMillis() / 10000);
             student.setPassword("12313");
             mapper.addStudent(student);
             session.commit();
@@ -73,7 +73,7 @@ public class HelloController {
     @ResponseBody
     public Student getStudent(HttpServletResponse response, @RequestParam(defaultValue = "111") String id) throws IOException {
         Student student = new Student();
-        student.setId(Long.parseLong(id));
+//        student.setId(Long.parseLong(id));
         return student;
     }
 
@@ -84,7 +84,7 @@ public class HelloController {
         List<Student> students = null;
         try {
             StudentMapper mapper = session.getMapper(StudentMapper.class);
-            students = mapper.getAllUser();
+            students = mapper.getAllUser(0, 10);
             session.commit();
         } finally {
             session.close();

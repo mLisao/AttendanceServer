@@ -16,7 +16,10 @@ public interface TeacherMapper {
     Teacher selectTeacherById(int id);
 
     @Select("SELECT * FROM teacher WHERE number = #{number}")
-    Teacher selectTeacherByNumber(int number);
+    Teacher selectTeacherByNumber(long number);
+
+    @Select("SELECT * FROM teacher WHERE number = #{0} AND password = #{1}")
+    Teacher selectTeacherByNumberAndPassword(long number, String password);
 
     @Select("SELECT * FROM teacher")
     List<Teacher> selectAll();

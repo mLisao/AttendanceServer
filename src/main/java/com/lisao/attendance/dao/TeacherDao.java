@@ -25,6 +25,22 @@ public interface TeacherDao {
     Teacher findById(int id);
 
     /**
+     * 通过工号查找一个老师
+     *
+     * @param number
+     * @return
+     */
+    Teacher findByNumber(long number);
+
+    /**
+     * 通过工号和密码查找一个老师
+     *
+     * @param number
+     * @return
+     */
+    Teacher findByNumberAndPassword(long number, String password);
+
+    /**
      * 获取所有老师的信息
      *
      * @param page

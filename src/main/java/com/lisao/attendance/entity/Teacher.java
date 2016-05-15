@@ -8,9 +8,19 @@ import com.lisao.attendance.entity.base.BaseEntity;
  */
 public class Teacher extends BaseEntity {
 
+    private long number;//工号
     private String name;//姓名
     private long mobileNumber;//手机号码
     private String email;//邮箱
+    private String password;//密码
+
+    public long getNumber() {
+        return number;
+    }
+
+    public void setNumber(long number) {
+        this.number = number;
+    }
 
     public String getName() {
         return name;
@@ -34,5 +44,13 @@ public class Teacher extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

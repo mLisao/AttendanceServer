@@ -2,7 +2,7 @@ package com.lisao.attendance.daoimpl;
 
 import com.lisao.attendance.dao.StudentDao;
 import com.lisao.attendance.entity.Student;
-import com.lisao.attendance.mapping.StudentManager;
+import com.lisao.attendance.mapping.StudentMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -31,7 +31,7 @@ public class StudentDaoImpl implements StudentDao {
     public boolean insert(Student student) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             mapper.addStudent(student);
             session.commit();
             return true;
@@ -45,7 +45,7 @@ public class StudentDaoImpl implements StudentDao {
         SqlSession session = sqlSessionFactory.openSession();
         Student student = null;
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             student = mapper.selectStudentById(id);
             session.commit();
         } finally {
@@ -59,7 +59,7 @@ public class StudentDaoImpl implements StudentDao {
         SqlSession session = sqlSessionFactory.openSession();
         Student student = null;
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             student = mapper.selectStudentByNumber(number);
             session.commit();
         } finally {
@@ -73,7 +73,7 @@ public class StudentDaoImpl implements StudentDao {
         SqlSession session = sqlSessionFactory.openSession();
         Student student = null;
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             student = mapper.selectStudentByNumberAndPwd(number, password);
             session.commit();
         } finally {
@@ -88,7 +88,7 @@ public class StudentDaoImpl implements StudentDao {
         SqlSession session = sqlSessionFactory.openSession();
         List<Student> students = new ArrayList<Student>();
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             students = mapper.getAllUser(page, limit);
             session.commit();
         } finally {
@@ -101,7 +101,7 @@ public class StudentDaoImpl implements StudentDao {
     public boolean updateStudentInfo(Student student) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             mapper.updateStudentInfo(student);
             session.commit();
         } finally {

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by lisao on 2016/5/2.
  */
-public interface StudentManager {
+public interface StudentMapper {
     @Select("SELECT * FROM student WHERE id = #{id}")
     Student selectStudentById(int id);
 

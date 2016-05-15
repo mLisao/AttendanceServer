@@ -6,7 +6,7 @@ import com.lisao.attendance.entity.base.BaseEntity;
  * Created by lisao on 2016/1/8.
  * 课堂信息
  */
-public class Classe extends BaseEntity {
+public class ClassRoom extends BaseEntity {
 
     private long startTime;//上课开始时间
     private long endTime;//上课结束时间

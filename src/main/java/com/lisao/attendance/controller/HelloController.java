@@ -1,7 +1,7 @@
 package com.lisao.attendance.controller;
 
 import com.lisao.attendance.entity.Student;
-import com.lisao.attendance.mapping.StudentManager;
+import com.lisao.attendance.mapping.StudentMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class HelloController {
         model.addAttribute("message", "Hello world!");
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             Student student = new Student();
             student.setName("张三");
             student.setNumber(System.currentTimeMillis()/10000);
@@ -83,7 +83,7 @@ public class HelloController {
         SqlSession session = sqlSessionFactory.openSession();
         List<Student> students = null;
         try {
-            StudentManager mapper = session.getMapper(StudentManager.class);
+            StudentMapper mapper = session.getMapper(StudentMapper.class);
             students = mapper.getAllUser();
             session.commit();
         } finally {

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
+import static com.lisao.attendance.controller.FaceController.PERSONFACE;
+
 /**
  * Created by lisao on 2016/5/2.
  */
@@ -22,6 +24,9 @@ public class FaceController {
     public static final String URLFACEDETECT = "/api/urlfacedetect";//根据参数Url，获取图像中的人脸位置和特征。
     public static final String URLFACEDETECTANDCOMPARE = "/api/urlfacedetectandcompare";//根据参数url1,url2获取两个人脸的相似度。
     public static final String FACEDETECTAGEANDSEX = "/api/facedetectageandsex";//根据参数faceimage，获取图像中的人脸、眼睛位置和特征、年龄性别。
+    public static final String PERSONFACE = "/api/personface";//添加/修改一张人脸
+    public static final String PERSONFACESIMILAR = "/api/personface/similar";//获取人脸库中与目标人脸一定相似度的人脸
+    public static final String PERSONFACEGETALL = "/api/personface/getall";//返回appkey存储的全部人脸
 
 
     /**
@@ -85,7 +90,7 @@ public class FaceController {
 
     /**
      * @param param
-     * @return 根据参数faceimage1,faceimage2获取两个人脸的相似度。
+     * @return 根据参数faceimage1, faceimage2获取两个人脸的相似度。
      * @throws IOException
      */
     @RequestMapping(value = FACEDETECTANDCOMPARE, method = RequestMethod.POST)
@@ -121,7 +126,7 @@ public class FaceController {
 
     /**
      * @param param
-     * @return 根据参数url1,url2获取两个人脸的相似度。
+     * @return 根据参数url1, url2获取两个人脸的相似度。
      * @throws IOException
      */
     @RequestMapping(value = URLFACEDETECTANDCOMPARE, method = RequestMethod.POST)
@@ -143,4 +148,24 @@ public class FaceController {
         return result;
     }
 
+    @RequestMapping(value = PERSONFACE, method = RequestMethod.POST)
+    @ResponseBody
+    public String personface(@RequestBody String param) throws IOException {
+        String result = FaceCoreHttp.getInstance().post(PERSONFACE, param);
+        return result;
+    }
+
+    @RequestMapping(value = PERSONFACESIMILAR, method = RequestMethod.POST)
+    @ResponseBody
+    public String personfacesimilar(@RequestBody String param) throws IOException {
+        String result = FaceCoreHttp.getInstance().post(PERSONFACESIMILAR, param);
+        return result;
+    }
+
+//    @RequestMapping(value = PERSONFACEGETALL, method = RequestMethod.GET)
+//    @ResponseBody
+//    public String personfaceGetall(@RequestBody String param) throws IOException {
+//        String result = FaceCoreHttp.getInstance().get(PERSONFACEGETALL, param);
+//        return result;
+//    }
 }

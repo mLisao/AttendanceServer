@@ -47,9 +47,12 @@ public class FaceCoreHttp {
         return response.body().string();
     }
 
+
     private String compilerUrl(String url) {
         url = ConstantValues.FACECORE_SERVER + url;
         url = url + "?appkey=" + ConstantValues.FACECORE_KEY;
         return url;
     }
+
+
 }

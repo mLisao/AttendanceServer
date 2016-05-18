@@ -23,7 +23,7 @@ public interface StudentMapper {
     @Insert("INSERT INTO student(name,number,password) values(#{name},#{number},#{password})")
     void addStudent(Student student);
 
-    @Select("SELECT * FROM student LIMIT #{0} #{1}")
+    @Select("SELECT * FROM student LIMIT #{0}, #{1}")
     List<Student> getAllUser(int page, int limit);
 
     @Update("UPDATE student SET " +

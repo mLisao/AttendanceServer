@@ -1,9 +1,6 @@
 package com.lisao.attendance.dao;
 
-import com.lisao.attendance.entity.ClassRoom;
-import com.lisao.attendance.entity.Teacher;
-
-import java.util.List;
+import com.lisao.attendance.entity.Schedule;
 
 /**
  * Created by lisao on 2016/5/10.
@@ -11,7 +8,7 @@ import java.util.List;
 public interface ClassRoomDao {
     /**
      * 添加
-     * @param classRoom
+     * @param schedule
      */
-    void addClassRoom(ClassRoom classRoom);
+    void addClassRoom(Schedule schedule);
 }

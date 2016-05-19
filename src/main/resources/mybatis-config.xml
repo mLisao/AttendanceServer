@@ -17,7 +17,7 @@
     <mappers>
         <mapper class="com.lisao.attendance.mapping.StudentMapper"/>
         <mapper class="com.lisao.attendance.mapping.TeacherMapper"/>
-        <mapper class="com.lisao.attendance.mapping.ClassRoomMapper"/>
+        <mapper class="com.lisao.attendance.mapping.ScheduleMapper"/>
         <mapper class="com.lisao.attendance.mapping.AttendMapper"/>
     </mappers>
 </configuration>

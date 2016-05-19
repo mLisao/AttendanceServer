@@ -1,8 +1,8 @@
 package com.lisao.attendance.daoimpl;
 
 import com.lisao.attendance.dao.ClassRoomDao;
-import com.lisao.attendance.entity.ClassRoom;
-import com.lisao.attendance.mapping.ClassRoomMapper;
+import com.lisao.attendance.entity.Schedule;
+import com.lisao.attendance.mapping.ScheduleMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -17,11 +17,11 @@ public class ClassRoomDaoImpl implements ClassRoomDao {
     }
 
     @Override
-    public void addClassRoom(ClassRoom classRoom) {
+    public void addClassRoom(Schedule schedule) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            ClassRoomMapper mapper = session.getMapper(ClassRoomMapper.class);
-            mapper.addClassRoom(classRoom);
+            ScheduleMapper mapper = session.getMapper(ScheduleMapper.class);
+            mapper.addClassRoom(schedule);
             session.commit();
         } finally {
             session.close();

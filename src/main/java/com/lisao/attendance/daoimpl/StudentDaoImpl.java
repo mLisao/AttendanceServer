@@ -89,7 +89,7 @@ public class StudentDaoImpl implements StudentDao {
         List<Student> students = new ArrayList<Student>();
         try {
             StudentMapper mapper = session.getMapper(StudentMapper.class);
-            students = mapper.getAllUser(page, limit);
+            students = mapper.getAllUser(page * limit, limit);
             session.commit();
         } finally {
             session.close();

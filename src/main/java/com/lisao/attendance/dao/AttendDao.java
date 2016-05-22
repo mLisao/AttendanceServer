@@ -22,7 +22,7 @@ public interface AttendDao {
      *
      * @param classRoomId
      */
-    void getAttendCount(int classRoomId);
+    int getAttendCount(int classRoomId);
 
     /**
      * 获取签到的学生

@@ -2,6 +2,8 @@ package com.lisao.attendance.entity;
 
 import com.lisao.attendance.entity.base.BaseEntity;
 
+import java.util.Date;
+
 /**
  * Created by lisao on 2016/1/8.
  * 课堂信息
@@ -9,36 +11,44 @@ import com.lisao.attendance.entity.base.BaseEntity;
 public class Schedule extends BaseEntity {
 
     private String name;//课程名字
-    private long startTime;//上课开始时间
-    private long endTime;//上课结束时间
-    private long endAttendTime;//结束签到时间
+    private Date startTime;//上课开始时间
+    private Date endTime;//上课结束时间
+    private Date endAttendTime;//结束签到时间
     private int week;//当前周数
     private String address;//上课地点
-    private Teacher teacher;//代课老师
+    private int teacherId;//代课老师
     private int startWeek;//开始周数
     private int endWeek;//结束周数
 
-    public long getStartTime() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(long startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public long getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(long endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
-    public long getEndAttendTime() {
+    public Date getEndAttendTime() {
         return endAttendTime;
     }
 
-    public void setEndAttendTime(long endAttendTime) {
+    public void setEndAttendTime(Date endAttendTime) {
         this.endAttendTime = endAttendTime;
     }
 
@@ -50,12 +60,12 @@ public class Schedule extends BaseEntity {
         this.address = address;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public int getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
     public int getWeek() {

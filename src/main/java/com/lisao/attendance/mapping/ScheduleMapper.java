@@ -12,15 +12,15 @@ import java.util.List;
  */
 public interface ScheduleMapper {
     @Select("SELECT * FROM schedule WHERE id = #{id}")
-    Schedule selectClassRoomById(int id);
+    Schedule selectScheduleById(int id);
 
     @Select("SELECT * FROM schedule WHERE teacherId = #{teacherId}")
-    Teacher selectClassRoomByNumber(int teacherId);
+    Schedule selectScheduleByNumber(int teacherId);
 
-    @Select("SELECT * FROM schedule")
-    List<Teacher> selectAll();
+    @Select("SELECT * FROM schedule,teacher WHERE schedule.teacherId = teacher.id")
+    List<Schedule> selectAll();
 
-    @Insert("INSERT INTO classroom(startTime,endTime,endAttendTime,address,teacherId) " +
-            "values(#{startTime},#{endTime},#{endAttendTime},#{address},#{teacherId})")
-    void addClassRoom(Schedule schedule);
+    @Insert("INSERT INTO schedule(startTime,endTime,endAttendTime,address,teacherId,week,startWeek,endWeek) " +
+            "values(#{startTime},#{endTime},#{endAttendTime},#{address},#{teacher.id},#{week},#{startWeek},#{endWeek})")
+    void addSchedule(Schedule schedule);
 }

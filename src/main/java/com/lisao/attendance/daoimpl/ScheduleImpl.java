@@ -2,7 +2,9 @@ package com.lisao.attendance.daoimpl;
 
 import com.lisao.attendance.dao.ScheduleDao;
 import com.lisao.attendance.entity.Schedule;
+import com.lisao.attendance.entity.Teacher;
 import com.lisao.attendance.mapping.ScheduleMapper;
+import com.lisao.attendance.mapping.TeacherMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -21,11 +23,11 @@ public class ScheduleImpl implements ScheduleDao {
     }
 
     @Override
-    public void addClassRoom(Schedule schedule) {
+    public void addSchedule(Schedule schedule) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
             ScheduleMapper mapper = session.getMapper(ScheduleMapper.class);
-            mapper.addClassRoom(schedule);
+            mapper.addSchedule(schedule);
             session.commit();
         } finally {
             session.close();
@@ -37,8 +39,9 @@ public class ScheduleImpl implements ScheduleDao {
         SqlSession session = sqlSessionFactory.openSession();
         List<Schedule> schedules = null;
         try {
-            ScheduleMapper mapper = session.getMapper(ScheduleMapper.class);
-            mapper.selectAll();
+            ScheduleMapper scheduleMapper = session.getMapper(ScheduleMapper.class);
+            TeacherMapper teacherMapper =session.getMapper(TeacherMapper.class);
+            schedules = scheduleMapper.selectAll();
             session.commit();
         } finally {
             session.close();

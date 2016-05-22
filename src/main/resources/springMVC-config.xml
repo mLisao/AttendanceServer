@@ -103,15 +103,15 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="studentDao" class="com.lisao.attendance.daoimpl.StudentDaoImpl">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
+    <!--数据库操作-->
+    <bean id="studentDao" class="com.lisao.attendance.daoimpl.StudentDaoImpl"/>
     <bean id="teacherDao" class="com.lisao.attendance.daoimpl.TeacherDaoImpl"/>
-    <bean id="classRoomDao" class="com.lisao.attendance.daoimpl.ScheduleImpl"/>
+    <bean id="scheduleDao" class="com.lisao.attendance.daoimpl.ScheduleImpl"/>
     <bean id="attendDao" class="com.lisao.attendance.daoimpl.AttendDaoImpl"/>
-
+    <!--静态资源解析-->
     <mvc:resources location="/WEB-INF/imgs/" mapping="/imgs/**"/>
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/fonts/" mapping="/fonts/**"/>
+
 </beans>

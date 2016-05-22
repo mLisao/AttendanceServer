@@ -13,7 +13,7 @@ public interface ScheduleDao {
      *
      * @param schedule
      */
-    void addClassRoom(Schedule schedule);
+    void addSchedule(Schedule schedule);
 
     /**
      * 获取所有的课表

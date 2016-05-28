@@ -14,6 +14,7 @@
             </dataSource>
         </environment>
     </environments>
+    <!--数据库表映射-->
     <mappers>
         <mapper class="com.lisao.attendance.mapping.StudentMapper"/>
         <mapper class="com.lisao.attendance.mapping.TeacherMapper"/>

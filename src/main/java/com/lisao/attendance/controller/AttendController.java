@@ -26,11 +26,7 @@ public class AttendController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addAttend() {
-        Attend attend = new Attend();
-        attend.setAttendTime(new Date());
-        attend.setScheduleId(1);
-        attend.setStudentId(1);
+    public Object addAttend(@RequestBody Attend attend) {
         attendDao.addAttend(attend);
         return attend;
     }

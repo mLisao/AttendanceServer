@@ -21,4 +21,12 @@ public interface ScheduleDao {
      * @return
      */
     List<Schedule> getAllSchedule();
+
+    /**
+     * 通过Id获取一个课表信息
+     *
+     * @param id
+     * @return
+     */
+    Schedule getScheduleById(int id);
 }

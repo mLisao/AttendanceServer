@@ -17,7 +17,7 @@ public interface ScheduleMapper {
     @Select("SELECT * FROM schedule WHERE teacherId = #{teacherId}")
     Schedule selectScheduleByNumber(int teacherId);
 
-    @Select("SELECT * FROM schedule,teacher WHERE schedule.teacherId = teacher.id")
+    @Select("SELECT * FROM schedule")
     List<Schedule> selectAll();
 
     @Insert("INSERT INTO schedule(startTime,endTime,endAttendTime,address,teacherId,week,startWeek,endWeek) " +

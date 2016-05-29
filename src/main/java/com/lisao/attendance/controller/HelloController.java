@@ -23,19 +23,19 @@ public class HelloController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
-        SqlSession session = sqlSessionFactory.openSession();
-        try {
-            StudentMapper mapper = session.getMapper(StudentMapper.class);
-            Student student = new Student();
-            student.setName("张三");
-            student.setNumber(System.currentTimeMillis() / 10000);
-            student.setPassword("12313");
-            mapper.addStudent(student);
-            session.commit();
-            // do work
-        } finally {
-            session.close();
-        }
+//        SqlSession session = sqlSessionFactory.openSession();
+//        try {
+//            StudentMapper mapper = session.getMapper(StudentMapper.class);
+//            Student student = new Student();
+//            student.setName("张三");
+//            student.setNumber(System.currentTimeMillis() / 10000);
+//            student.setPassword("12313");
+//            mapper.addStudent(student);
+//            session.commit();
+//            // do work
+//        } finally {
+//            session.close();
+//        }
         return "hello";
     }
 

@@ -40,12 +40,27 @@ public class ScheduleImpl implements ScheduleDao {
         List<Schedule> schedules = null;
         try {
             ScheduleMapper scheduleMapper = session.getMapper(ScheduleMapper.class);
-            TeacherMapper teacherMapper =session.getMapper(TeacherMapper.class);
+            TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
             schedules = scheduleMapper.selectAll();
             session.commit();
         } finally {
             session.close();
         }
         return schedules;
+    }
+
+    @Override
+    public Schedule getScheduleById(int id) {
+        SqlSession session = sqlSessionFactory.openSession();
+        Schedule schedule = null;
+        try {
+            ScheduleMapper scheduleMapper = session.getMapper(ScheduleMapper.class);
+            TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
+            schedule = scheduleMapper.selectScheduleById(id);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return schedule;
     }
 }

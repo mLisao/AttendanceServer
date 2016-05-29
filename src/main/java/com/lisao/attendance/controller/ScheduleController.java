@@ -4,10 +4,7 @@ import com.lisao.attendance.dao.ScheduleDao;
 import com.lisao.attendance.entity.Schedule;
 import com.lisao.attendance.entity.Teacher;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -34,18 +31,15 @@ public class ScheduleController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addAllSchedule() {
-        Schedule schedule = new Schedule();
-        schedule.setName("财务报表分析");
-        schedule.setAddress("三教");
-        schedule.setStartTime(new Date());
-        schedule.setEndTime(new Date());
-        schedule.setEndAttendTime(new Date());
-        schedule.setEndWeek(13);
-        schedule.setStartWeek(1);
-        schedule.setWeek(1);
-        schedule.setTeacherId(1);
+    public Object addSchedule(Schedule schedule) {
         scheduleDao.addSchedule(schedule);
         return schedule;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAllScheduleById(@PathVariable("id") int id) {
+        return scheduleDao.getScheduleById(id);
+
     }
 }

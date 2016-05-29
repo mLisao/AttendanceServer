@@ -2,6 +2,7 @@ package com.lisao.attendance.entity;
 
 import com.lisao.attendance.entity.base.BaseEntity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -11,9 +12,9 @@ import java.util.Date;
 public class Schedule extends BaseEntity {
 
     private String name;//课程名字
-    private Date startTime;//上课开始时间
-    private Date endTime;//上课结束时间
-    private Date endAttendTime;//结束签到时间
+    private Timestamp startTime;//上课开始时间
+    private Timestamp endTime;//上课结束时间
+    private Timestamp endAttendTime;//结束签到时间
     private int week;//当前周数
     private String address;//上课地点
     private int teacherId;//代课老师
@@ -28,27 +29,27 @@ public class Schedule extends BaseEntity {
         this.name = name;
     }
 
-    public Date getStartTime() {
+    public Timestamp getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(Timestamp startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
-    public Date getEndAttendTime() {
+    public Timestamp getEndAttendTime() {
         return endAttendTime;
     }
 
-    public void setEndAttendTime(Date endAttendTime) {
+    public void setEndAttendTime(Timestamp endAttendTime) {
         this.endAttendTime = endAttendTime;
     }
 

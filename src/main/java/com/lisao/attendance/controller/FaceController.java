@@ -73,6 +73,7 @@ public class FaceController {
     @ResponseBody
     public String facedatect(@RequestBody String param) throws IOException {
         String result = FaceCoreHttp.getInstance().post(FACEDATECT, param);
+        System.out.println("facedatect      " + result);
         return result;
     }
 
@@ -151,6 +152,7 @@ public class FaceController {
     @RequestMapping(value = PERSONFACE, method = RequestMethod.POST)
     @ResponseBody
     public String personface(@RequestBody String param) throws IOException {
+        System.out.println(param);
         String result = FaceCoreHttp.getInstance().post(PERSONFACE, param);
         return result;
     }
@@ -158,14 +160,17 @@ public class FaceController {
     @RequestMapping(value = PERSONFACESIMILAR, method = RequestMethod.POST)
     @ResponseBody
     public String personfacesimilar(@RequestBody String param) throws IOException {
+        System.out.println("personfacesimilar");
+        System.out.println(param);
         String result = FaceCoreHttp.getInstance().post(PERSONFACESIMILAR, param);
+        System.out.println(result);
         return result;
     }
 
-//    @RequestMapping(value = PERSONFACEGETALL, method = RequestMethod.GET)
-//    @ResponseBody
-//    public String personfaceGetall(@RequestBody String param) throws IOException {
-//        String result = FaceCoreHttp.getInstance().get(PERSONFACEGETALL, param);
-//        return result;
-//    }
+    @RequestMapping(value = PERSONFACEGETALL, method = RequestMethod.GET)
+    @ResponseBody
+    public String personfaceGetall() throws IOException {
+        String result = FaceCoreHttp.getInstance().get(PERSONFACEGETALL);
+        return result;
+    }
 }

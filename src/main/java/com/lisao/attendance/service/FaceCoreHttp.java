@@ -4,6 +4,7 @@ import com.lisao.attendance.config.ConstantValues;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lisao on 2016/5/2.
@@ -13,16 +14,20 @@ public class FaceCoreHttp {
     private static OkHttpClient client;
 
     public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
+            = MediaType.parse("application/json;charset=utf-8");
 
     private FaceCoreHttp() {
-        client = new OkHttpClient();
+        client = new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .build();
     }
 
     public static FaceCoreHttp getInstance() {
         if (mInstance == null) {
             synchronized (FaceCoreHttp.class) {
-                mInstance = new FaceCoreHttp();
+                if (mInstance == null) {
+                    mInstance = new FaceCoreHttp();
+                }
             }
         }
         return mInstance;

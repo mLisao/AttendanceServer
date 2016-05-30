@@ -20,7 +20,8 @@ public interface StudentMapper {
     @Select("SELECT * FROM student WHERE number = #{0} AND password = #{1}")
     Student selectStudentByNumberAndPwd(long number, String password);
 
-    @Insert("INSERT INTO student(name,number,password) values(#{name},#{number},#{password})")
+    @Insert("INSERT INTO student(name,number,password,sex,qq,mobileNumber,avatar,college,major,grade) " +
+            "values(#{name},#{number},#{password},#{sex},#{qq},#{mobileNumber},#{avatar},#{college},#{major},#{grade})")
     void addStudent(Student student);
 
     @Select("SELECT * FROM student LIMIT #{0}, #{1}")

@@ -50,22 +50,14 @@ public class AccountController {
         return student;
     }
 
-    /**
-     * @param name
-     * @param password
-     * @param number
-     */
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public Object studentRegister(@RequestParam("name") String name, @RequestParam("password") String password, @RequestParam("number") long number) {
-        Student student = studentDao.findByName(number);//通过学号查询
-        if (student != null) {
+    public Object studentRegister(@RequestBody Student student) {
+        System.out.println(JSON.toJSONString(student));
+        if (studentDao.findByName(student.getNumber()) != null) {//通过学号查询
             return new ErrorCode(ErrorCode.FAILURE, "账号已经被注册");
         } else {
-            student = new Student();
-            student.setName(name);
-            student.setNumber(number);
-            student.setPassword(password);
             studentDao.insert(student);
         }
         return student;

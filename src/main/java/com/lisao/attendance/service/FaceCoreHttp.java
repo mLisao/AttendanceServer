@@ -4,6 +4,8 @@ import com.lisao.attendance.config.ConstantValues;
 import okhttp3.*;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URLConnection;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -11,7 +13,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class FaceCoreHttp {
     private static FaceCoreHttp mInstance;
+    private URLConnection connection;
     private static OkHttpClient client;
+
 
     public static final MediaType JSON
             = MediaType.parse("application/json;charset=utf-8");
@@ -19,6 +23,9 @@ public class FaceCoreHttp {
     private FaceCoreHttp() {
         client = new OkHttpClient.Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
+                .readTimeout(15, TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
                 .build();
     }
 
@@ -40,7 +47,9 @@ public class FaceCoreHttp {
                 .post(body)
                 .build();
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        String result = response.body().string();
+        response.close();
+        return result;
     }
 
     public String get(String url) throws IOException {
@@ -49,7 +58,9 @@ public class FaceCoreHttp {
                 .get()
                 .build();
         Response response = client.newCall(request).execute();
-        return response.body().string();
+        String result = response.body().string();
+        response.close();
+        return result;
     }
 
 
@@ -58,6 +69,5 @@ public class FaceCoreHttp {
         url = url + "?appkey=" + ConstantValues.FACECORE_KEY;
         return url;
     }
-
 
 }

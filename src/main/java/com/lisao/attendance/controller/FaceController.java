@@ -73,7 +73,6 @@ public class FaceController {
     @ResponseBody
     public String facedatect(@RequestBody String param) throws IOException {
         String result = FaceCoreHttp.getInstance().post(FACEDATECT, param);
-        System.out.println("facedatect      " + result);
         return result;
     }
 
@@ -160,10 +159,7 @@ public class FaceController {
     @RequestMapping(value = PERSONFACESIMILAR, method = RequestMethod.POST)
     @ResponseBody
     public String personfacesimilar(@RequestBody String param) throws IOException {
-        System.out.println("personfacesimilar");
-        System.out.println(param);
         String result = FaceCoreHttp.getInstance().post(PERSONFACESIMILAR, param);
-        System.out.println(result);
         return result;
     }
 

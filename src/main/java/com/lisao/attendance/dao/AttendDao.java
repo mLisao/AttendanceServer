@@ -1,6 +1,7 @@
 package com.lisao.attendance.dao;
 
 import com.lisao.attendance.entity.Attend;
+import com.lisao.attendance.entity.MyAttend;
 import com.lisao.attendance.entity.Student;
 
 import java.util.List;
@@ -23,6 +24,14 @@ public interface AttendDao {
      * @param classRoomId
      */
     int getAttendCount(int classRoomId);
+
+    /**
+     * 通过学生ID 查找签到
+     *
+     * @param id
+     * @return
+     */
+    List<MyAttend> getMyAttend(int id);
 
     /**
      * 获取签到的学生

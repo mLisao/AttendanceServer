@@ -2,8 +2,7 @@ package com.lisao.attendance.mapping;
 
 import com.lisao.attendance.entity.Schedule;
 import com.lisao.attendance.entity.Teacher;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 

@@ -36,4 +36,10 @@ public class AttendController {
     public Object getStudent(@PathVariable("id") int id) {
         return attendDao.getAttendStudent(id);
     }
+
+    @RequestMapping(value = "/my/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getMyAttend(@PathVariable("id") int id) {
+        return attendDao.getMyAttend(id);
+    }
 }

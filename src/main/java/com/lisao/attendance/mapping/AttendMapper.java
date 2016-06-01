@@ -1,6 +1,7 @@
 package com.lisao.attendance.mapping;
 
 import com.lisao.attendance.entity.Attend;
+import com.lisao.attendance.entity.MyAttend;
 import com.lisao.attendance.entity.Student;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -19,4 +20,7 @@ public interface AttendMapper {
 
     @Select("SELECT * FROM student WHERE  id in (SElECT studentId FROM attend WHERE scheduleId = #{scheduleId})")
     List<Student> getAttendStudent(int scheduleId);
+
+    @Select("SELECT a.attendTime ,b.name FROM attend a,`schedule` b WHERE a.scheduleId =b.id AND a.studentId = #{id}")
+    List<MyAttend> getMyAttend(int id);
 }

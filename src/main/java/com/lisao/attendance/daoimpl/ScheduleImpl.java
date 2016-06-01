@@ -1,5 +1,6 @@
 package com.lisao.attendance.daoimpl;
 
+import com.alibaba.fastjson.JSON;
 import com.lisao.attendance.dao.ScheduleDao;
 import com.lisao.attendance.entity.Schedule;
 import com.lisao.attendance.entity.Teacher;
@@ -40,8 +41,8 @@ public class ScheduleImpl implements ScheduleDao {
         List<Schedule> schedules = null;
         try {
             ScheduleMapper scheduleMapper = session.getMapper(ScheduleMapper.class);
-            TeacherMapper teacherMapper = session.getMapper(TeacherMapper.class);
             schedules = scheduleMapper.selectAll();
+            System.out.println(JSON.toJSONString(schedules));
             session.commit();
         } finally {
             session.close();

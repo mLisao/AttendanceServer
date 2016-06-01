@@ -2,6 +2,7 @@ package com.lisao.attendance.daoimpl;
 
 import com.lisao.attendance.dao.AttendDao;
 import com.lisao.attendance.entity.Attend;
+import com.lisao.attendance.entity.MyAttend;
 import com.lisao.attendance.entity.Student;
 import com.lisao.attendance.mapping.AttendMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -45,6 +46,20 @@ public class AttendDaoImpl implements AttendDao {
             session.close();
         }
         return count;
+    }
+
+    @Override
+    public List<MyAttend> getMyAttend(int id) {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<MyAttend> myAttends;
+        try {
+            AttendMapper mapper = session.getMapper(AttendMapper.class);
+            myAttends = mapper.getMyAttend(id);
+            session.commit();
+        } finally {
+            session.close();
+        }
+        return myAttends;
     }
 
     @Override

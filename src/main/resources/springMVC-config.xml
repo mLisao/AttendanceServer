@@ -41,6 +41,8 @@
                     <list>
                         <value>WriteNullStringAsEmpty</value>
                         <value>WriteNullListAsEmpty</value>
+                        <value>QuoteFieldNames</value>
+                        <value>SkipTransientField</value>
                     </list>
                 </property>
             </bean>

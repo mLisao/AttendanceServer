@@ -42,4 +42,6 @@ public class AttendController {
     public Object getMyAttend(@PathVariable("id") int id) {
         return attendDao.getMyAttend(id);
     }
+
+
 }

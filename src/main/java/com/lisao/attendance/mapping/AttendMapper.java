@@ -21,6 +21,6 @@ public interface AttendMapper {
     @Select("SELECT * FROM student WHERE  id in (SElECT studentId FROM attend WHERE scheduleId = #{scheduleId})")
     List<Student> getAttendStudent(int scheduleId);
 
-    @Select("SELECT a.attendTime ,b.name FROM attend a,`schedule` b WHERE a.scheduleId =b.id AND a.studentId = #{id}")
+    @Select("SELECT a.attendTime ,b.name FROM attend a,`schedule` b WHERE a.scheduleId =b.id AND a.studentId = #{id} order by a.attendTime Desc")
     List<MyAttend> getMyAttend(int id);
 }
